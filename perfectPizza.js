@@ -12,21 +12,29 @@ const button6Element = document.querySelector(".button6");
 const button9Element = document.querySelector(".button9");
 const display3Element = document.querySelector(".display3");
 const totalDisplayElement = document.querySelector(".totalDisplay");
+const checkBtn = document.querySelector(".check")
 
 var totalCost = 0;
 var totalCostSmall=0;
 var totalCostMedium=0;
 var totalCostLarge=0;
+//var countSPos =0;
+//var countSNeg =0;
 
 function smallPizzaCalc(){
     if (button1Element.addEventListener("click",function(){
         totalCostSmall += 20;
         var totalCostSmall1=totalCostSmall.toFixed(2);
+        //countSPos++;
+        //alert(countSPos);
         display1Element.innerHTML=totalCostSmall1;})){
-            totalCost += 20;
+            //totalCost += 20;
+            
     }else if ((button7Element.addEventListener("click",function(){
         totalCostSmall += 20.00;
         var totalCostSmall1=totalCostSmall.toFixed(2);
+        //countSPos++;
+        //alert(countSPos);
         display1Element.innerHTML=totalCostSmall1;}))){
     }else if ((button2Element.addEventListener("click",function(){
         if (totalCostSmall >= 20){
@@ -150,6 +158,38 @@ function totalCostPizza(){
 };
 
 totalCostPizza();
+
+
+const boxes = document.querySelector(".boxs");
+const checkOutPay = document.querySelectorAll(".check2");
+const inputAmountElement = document.querySelector(".inputAmount");
+const payBtnElement = document.querySelector(".payBtn");
+const replyElement = document.querySelector(".reply");
+
+
+checkBtn.addEventListener("click",function(){
+    checkBtn.classList.toggle("hidden");
+    boxes.classList.toggle("hidden");
+});
+
+var text = 0;
+
+payBtnElement.addEventListener("click",function(){
+    text = Number(inputAmountElement.value);
+    total2 =totalDisplayElement.innerHTML.value;
+    alert(total2)
+    var change = (total2-text);
+    alert(change);
+    if(change<0){
+        replyElement.innerHTML="You dont have enough money";
+    }else{
+        replyElement.innerHTML="Thank you enjoy your pizza";
+    }
+    
+
+});
+
+
 
 
            
