@@ -12,16 +12,95 @@ const button6Element = document.querySelector(".button6");
 const button9Element = document.querySelector(".button9");
 const display3Element = document.querySelector(".display3");
 const totalDisplayElement = document.querySelector(".totalDisplay");
-const checkBtn = document.querySelector(".check")
+const checkBtn = document.querySelector(".check");
+const boxes = document.querySelector(".boxs");
+const checkOutPay = document.querySelectorAll(".check2");
+const inputAmountElement = document.querySelector(".inputAmount");
+const inputAmountElement1 = document.querySelector(".totalAmount");
+const payBtnElement = document.querySelector(".payBtn");
+const replyElement = document.querySelector(".reply");
+
 
 var totalCost = 0;
 var totalCostSmall=0;
 var totalCostMedium=0;
 var totalCostLarge=0;
-var countSPos =0;
-var countSNeg =0;
+var countSmall=0;
+var countMedium=0;
+var countLarge=0;
 
 
+
+
+
+
+function pizzaCalc(event){
+    if(event.target.id ==="button1" || event.target.id ==="button7"){
+        countSmall++;
+        pizzaCalcValue();
+    }else if (event.target.id ==="button2"){
+        if(countSmall<=0){
+            countSmall=0;
+        }else{
+            countSmall--;
+        }
+        pizzaCalcValue();
+    }else if(event.target.id ==="button3" || event.target.id ==="button8"){
+        countMedium++
+        pizzaCalcValue();
+    }else if (event.target.id ==="button4"){
+        if(countMedium<=0){
+            countMedium=0;
+        }else{
+            countMedium--;
+        }
+        pizzaCalcValue();
+    }else if(event.target.id ==="button5" || event.target.id ==="button9"){
+        countLarge++;
+        pizzaCalcValue();
+    }else if (event.target.id ==="button6"){
+        if(countLarge<=0){
+            countLarge=0;
+        }else{
+            countLarge--;
+        }
+        pizzaCalcValue();
+    }
+};
+
+function pizzaCalcValue(){
+    totalCostSmall=countSmall*20;
+    var totalCostSmall1=totalCostSmall.toFixed(2);
+    display1Element.innerHTML=totalCostSmall1;
+    totalCostMedium=countMedium*90;
+    var totalCostMedium1=totalCostMedium.toFixed(2);
+    display2Element.innerHTML=totalCostMedium1;
+    totalCostLarge=countLarge*140;
+    var totalCostLarge1=totalCostLarge.toFixed(2);
+    display3Element.innerHTML=totalCostLarge1;
+
+    totalCost = totalCostSmall + totalCostMedium + totalCostLarge;
+    var totalCost1=totalCost.toFixed(2);
+    totalDisplayElement.innerHTML=totalCost1;
+
+
+
+};
+
+button1Element.addEventListener("click",pizzaCalc);
+button2Element.addEventListener("click",pizzaCalc);
+button7Element.addEventListener("click",pizzaCalc);
+button3Element.addEventListener("click",pizzaCalc);
+button4Element.addEventListener("click",pizzaCalc);
+button8Element.addEventListener("click",pizzaCalc);
+button5Element.addEventListener("click",pizzaCalc);
+button6Element.addEventListener("click",pizzaCalc);
+button9Element.addEventListener("click",pizzaCalc);
+
+
+
+
+/*
 function smallPizzaCalc(){
     if (button1Element.addEventListener("click",function(){
         totalCostSmall += 20;
@@ -172,11 +251,13 @@ const replyElement = document.querySelector(".reply");
 checkBtn.addEventListener("click",function(){
     checkBtn.classList.toggle("hidden");
     boxes.classList.toggle("hidden");
+    inputAmountElement1.classList.toggle("hidden");
 });
 
 var text = 0;
 
 payBtnElement.addEventListener("click",function(){
+   
     text1 = Number(inputAmountElement1.value);
     text = Number(inputAmountElement.value);
     var change = (text-text1);
@@ -186,7 +267,7 @@ payBtnElement.addEventListener("click",function(){
         replyElement.innerHTML="Thank you enjoy your pizza, Your change is R" + change + ".00 ";
     }
 });
-/*
+
 var countSPos =0;
 var countSNeg =0;
 
