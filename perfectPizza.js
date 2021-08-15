@@ -18,8 +18,9 @@ var totalCost = 0;
 var totalCostSmall=0;
 var totalCostMedium=0;
 var totalCostLarge=0;
-//var countSPos =0;
-//var countSNeg =0;
+var countSPos =0;
+var countSNeg =0;
+
 
 function smallPizzaCalc(){
     if (button1Element.addEventListener("click",function(){
@@ -163,6 +164,7 @@ totalCostPizza();
 const boxes = document.querySelector(".boxs");
 const checkOutPay = document.querySelectorAll(".check2");
 const inputAmountElement = document.querySelector(".inputAmount");
+const inputAmountElement1 = document.querySelector(".totalAmount");
 const payBtnElement = document.querySelector(".payBtn");
 const replyElement = document.querySelector(".reply");
 
@@ -175,19 +177,82 @@ checkBtn.addEventListener("click",function(){
 var text = 0;
 
 payBtnElement.addEventListener("click",function(){
+    text1 = Number(inputAmountElement1.value);
     text = Number(inputAmountElement.value);
-    total2 =totalDisplayElement.innerHTML.value;
-    alert(total2)
-    var change = (total2-text);
-    alert(change);
+    var change = (text-text1);
     if(change<0){
         replyElement.innerHTML="You dont have enough money";
     }else{
-        replyElement.innerHTML="Thank you enjoy your pizza";
+        replyElement.innerHTML="Thank you enjoy your pizza, Your change is R" + change + ".00 ";
     }
+});
+/*
+var countSPos =0;
+var countSNeg =0;
+
+
+function smallPizzaCalc(){
+    if (button1Element.addEventListener("click",function(){
+        countSPos++;
+        alert(countSPos);
+        alert(countSNeg);
+        
+        
+        })){            
+    }else if ((button7Element.addEventListener("click",function(){
+        countSPos++;
+        alert(countSPos);
+        alert(countSNeg);
+        
+        }))){
+    }else if ((button2Element.addEventListener("click",function(){
+        if (countSPos<=0){
+            countSNeg=0;
+            alert(countSNeg);
+            alert(countSPos);
+            
+        }else if (countSPos===countSNeg){
+            countSNeg=countSNeg;
+            alert(countSNeg);
+            alert(countSPos);
+            
+        }else if (countSPos>countSNeg){
+            countSNeg++;
+            alert(countSNeg);
+            alert(countSPos);
+           
+        }  
+    ;}))){}
+
+    var diff = (countSPos - countSNeg);
+    alert(diff);
     
 
-});
+
+    
+    
+};
+smallPizzaCalc();
+
+alert(countSNeg);
+alert(countSPos);
+
+
+var totalSmall =0;
+
+function small(){
+    smallPizzaCalc();
+    totalSmall = ((countSPos*20)-(countSNeg*20));
+    console.log(totalSmall); 
+
+
+};
+
+small();
+*/
+
+
+
 
 
 
