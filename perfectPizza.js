@@ -16,7 +16,6 @@ const checkBtn = document.querySelector(".check");
 const boxes = document.querySelector(".boxs");
 const checkOutPay = document.querySelectorAll(".check2");
 const inputAmountElement = document.querySelector(".inputAmount");
-const inputAmountElement1 = document.querySelector(".totalAmount");
 const payBtnElement = document.querySelector(".payBtn");
 const replyElement = document.querySelector(".reply");
 
@@ -72,9 +71,11 @@ function pizzaCalcValue(){
     totalCostSmall=countSmall*20;
     var totalCostSmall1=totalCostSmall.toFixed(2);
     display1Element.innerHTML=totalCostSmall1;
+
     totalCostMedium=countMedium*90;
     var totalCostMedium1=totalCostMedium.toFixed(2);
     display2Element.innerHTML=totalCostMedium1;
+
     totalCostLarge=countLarge*140;
     var totalCostLarge1=totalCostLarge.toFixed(2);
     display3Element.innerHTML=totalCostLarge1;
@@ -82,10 +83,42 @@ function pizzaCalcValue(){
     totalCost = totalCostSmall + totalCostMedium + totalCostLarge;
     var totalCost1=totalCost.toFixed(2);
     totalDisplayElement.innerHTML=totalCost1;
-
-
-
 };
+
+checkBtn.addEventListener("click",function(){
+    checkBtn.classList.add("hidden");
+    boxes.classList.toggle("hidden");
+});
+
+var text = 0;
+
+payBtnElement.addEventListener("click",function(){
+   
+    text = Number(inputAmountElement.value);
+    var change = (text-totalCost);
+    if(change<0){
+        replyElement.innerHTML= "Sorry - that is not enough money!";
+    }else{
+        replyElement.innerHTML=" \"Enjoy\" your pizzas\', Your change is R" + change + ".00 ";
+        totalCost = 0;
+         totalCostSmall=0;
+        totalCostMedium=0;
+        totalCostLarge=0;
+        countSmall=0;
+        countMedium=0;
+        countLarge=0;
+
+
+    }
+});
+
+payBtnElement.addEventListener("click",function(){
+    setTimeout(function(){
+        replyElement.classList.remove("reply");
+    }, 3000);
+})
+
+
 
 button1Element.addEventListener("click",pizzaCalc);
 button2Element.addEventListener("click",pizzaCalc);
@@ -99,238 +132,6 @@ button9Element.addEventListener("click",pizzaCalc);
 
 
 
-
-/*
-function smallPizzaCalc(){
-    if (button1Element.addEventListener("click",function(){
-        totalCostSmall += 20;
-        var totalCostSmall1=totalCostSmall.toFixed(2);
-        //countSPos++;
-        //alert(countSPos);
-        display1Element.innerHTML=totalCostSmall1;})){
-            //totalCost += 20;
-            
-    }else if ((button7Element.addEventListener("click",function(){
-        totalCostSmall += 20.00;
-        var totalCostSmall1=totalCostSmall.toFixed(2);
-        //countSPos++;
-        //alert(countSPos);
-        display1Element.innerHTML=totalCostSmall1;}))){
-    }else if ((button2Element.addEventListener("click",function(){
-        if (totalCostSmall >= 20){
-            totalCostSmall -= 20.00;
-            var totalCostSmall1=totalCostSmall.toFixed(2);
-            display1Element.innerHTML=totalCostSmall1; 
-        }else{
-            totalCostSmall = 0.00;
-            var totalCostSmall1=totalCostSmall.toFixed(2);
-            display1Element.innerHTML=totalCostSmall1;    
-        }
-    ;}))){}
-    
-};
-smallPizzaCalc();
-
-function mediumPizzaCalc(){
-    if (button3Element.addEventListener("click",function(){
-        totalCostMedium += 90;
-        var totalCostMedium1=totalCostMedium.toFixed(2);
-        display2Element.innerHTML=totalCostMedium1;})){   
-    }else if ((button8Element.addEventListener("click",function(){
-        totalCostMedium += 90.00;
-        var totalCostMedium1=totalCostMedium.toFixed(2);
-        display2Element.innerHTML=totalCostMedium1;}))){
-    }else if ((button4Element.addEventListener("click",function(){
-        if (totalCostMedium >= 90){
-            totalCostMedium -= 90.00;
-            var totalCostMedium1=totalCostMedium.toFixed(2);
-            display2Element.innerHTML=totalCostMedium1; 
-        }else{
-            totalCostMedium = 0.00;
-            var totalCostMedium1=totalCostMedium.toFixed(2);
-            display2Element.innerHTML=totalCostMedium1;    
-        }
-    ;}))){}
-    
-};
-mediumPizzaCalc();
-
-function largePizzaCalc(){
-    if (button5Element.addEventListener("click",function(){
-        totalCostLarge += 140.00;
-        var totalCostLarge1=totalCostLarge.toFixed(2);
-        display3Element.innerHTML=totalCostLarge1;})){   
-    }else if ((button9Element.addEventListener("click",function(){
-        totalCostLarge += 140.00;
-        var totalCostLarge1=totalCostLarge.toFixed(2);
-        display3Element.innerHTML=totalCostLarge1;}))){
-    }else if ((button6Element.addEventListener("click",function(){
-        if (totalCostLarge >= 140){
-            totalCostLarge -= 140.00;
-            var totalCostLarge1=totalCostLarge.toFixed(2);
-            display3Element.innerHTML=totalCostLarge1; 
-        }else{
-            totalCostLarge = 0.00;
-            var totalCostLarge1=totalCostLarge.toFixed(2);
-            display3Element.innerHTML=totalCostLarge1;    
-        }
-    ;}))){}
-    
-};
-largePizzaCalc();
-
-
-function totalCostPizza(){
-
-        if (button1Element.addEventListener("click",function(){
-            totalCost += 20;
-            var total1=totalCost.toFixed(2);
-            totalDisplayElement.innerHTML=total1;})){
-        }else if ((button7Element.addEventListener("click",function(){
-            totalCost += 20;
-            var total1=totalCost.toFixed(2);
-            totalDisplayElement.innerHTML=total1;}))){
-        }else if ((button2Element.addEventListener("click",function(){
-            if (totalCost<=0){
-                totalCost=0;
-            }else{
-                totalCost -= 20;
-                var total1=totalCost.toFixed(2);
-                totalDisplayElement.innerHTML=total1;
-            }
-            }))){
-        }else if (button3Element.addEventListener("click",function(){
-            totalCost += 90;
-            var total1=totalCost.toFixed(2);
-            totalDisplayElement.innerHTML=total1;})){
-        }else if ((button8Element.addEventListener("click",function(){
-            totalCost += 90;
-            var total1=totalCost.toFixed(2);
-            totalDisplayElement.innerHTML=total1;}))){
-        }else if ((button4Element.addEventListener("click",function(){
-            if (totalCost<=0){
-                totalCost=0;
-            }else{
-                totalCost -= 90;
-                var total1=totalCost.toFixed(2);
-                totalDisplayElement.innerHTML=total1;
-            }
-            }))){
-        }else if (button5Element.addEventListener("click",function(){
-            totalCost += 140;
-            var total1=totalCost.toFixed(2);
-            totalDisplayElement.innerHTML=total1;})){
-        }else if ((button9Element.addEventListener("click",function(){
-            totalCost += 140;
-            var total1=totalCost.toFixed(2);
-            totalDisplayElement.innerHTML=total1;}))){
-        }else if ((button6Element.addEventListener("click",function(){
-            if (totalCost<=0){
-                totalCost=0;
-            }else{
-                totalCost -= 140;
-                var total1=totalCost.toFixed(2);
-                totalDisplayElement.innerHTML=total1;
-            }
-            }))){
-        }
-    
-};
-
-totalCostPizza();
-
-
-const boxes = document.querySelector(".boxs");
-const checkOutPay = document.querySelectorAll(".check2");
-const inputAmountElement = document.querySelector(".inputAmount");
-const inputAmountElement1 = document.querySelector(".totalAmount");
-const payBtnElement = document.querySelector(".payBtn");
-const replyElement = document.querySelector(".reply");
-
-
-checkBtn.addEventListener("click",function(){
-    checkBtn.classList.toggle("hidden");
-    boxes.classList.toggle("hidden");
-    inputAmountElement1.classList.toggle("hidden");
-});
-
-var text = 0;
-
-payBtnElement.addEventListener("click",function(){
-   
-    text1 = Number(inputAmountElement1.value);
-    text = Number(inputAmountElement.value);
-    var change = (text-text1);
-    if(change<0){
-        replyElement.innerHTML="You dont have enough money";
-    }else{
-        replyElement.innerHTML="Thank you enjoy your pizza, Your change is R" + change + ".00 ";
-    }
-});
-
-var countSPos =0;
-var countSNeg =0;
-
-
-function smallPizzaCalc(){
-    if (button1Element.addEventListener("click",function(){
-        countSPos++;
-        alert(countSPos);
-        alert(countSNeg);
-        
-        
-        })){            
-    }else if ((button7Element.addEventListener("click",function(){
-        countSPos++;
-        alert(countSPos);
-        alert(countSNeg);
-        
-        }))){
-    }else if ((button2Element.addEventListener("click",function(){
-        if (countSPos<=0){
-            countSNeg=0;
-            alert(countSNeg);
-            alert(countSPos);
-            
-        }else if (countSPos===countSNeg){
-            countSNeg=countSNeg;
-            alert(countSNeg);
-            alert(countSPos);
-            
-        }else if (countSPos>countSNeg){
-            countSNeg++;
-            alert(countSNeg);
-            alert(countSPos);
-           
-        }  
-    ;}))){}
-
-    var diff = (countSPos - countSNeg);
-    alert(diff);
-    
-
-
-    
-    
-};
-smallPizzaCalc();
-
-alert(countSNeg);
-alert(countSPos);
-
-
-var totalSmall =0;
-
-function small(){
-    smallPizzaCalc();
-    totalSmall = ((countSPos*20)-(countSNeg*20));
-    console.log(totalSmall); 
-
-
-};
-
-small();
-*/
 
 
 
