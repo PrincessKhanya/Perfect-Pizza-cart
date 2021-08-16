@@ -19,7 +19,6 @@ const inputAmountElement = document.querySelector(".inputAmount");
 const payBtnElement = document.querySelector(".payBtn");
 const replyElement = document.querySelector(".reply");
 
-
 var totalCost = 0;
 var totalCostSmall=0;
 var totalCostMedium=0;
@@ -27,11 +26,6 @@ var totalCostLarge=0;
 var countSmall=0;
 var countMedium=0;
 var countLarge=0;
-
-
-
-
-
 
 function pizzaCalc(event){
     if(event.target.id ==="button1" || event.target.id ==="button7"){
@@ -88,6 +82,7 @@ function pizzaCalcValue(){
 checkBtn.addEventListener("click",function(){
     checkBtn.classList.add("hidden");
     boxes.classList.toggle("hidden");
+    payBtnElement.classList.remove("hidden");
 });
 
 var text = 0;
@@ -98,27 +93,39 @@ payBtnElement.addEventListener("click",function(){
     var change = (text-totalCost);
     if(change<0){
         replyElement.innerHTML= "Sorry - that is not enough money!";
+        setTimeout(function(){
+            replyElement.classList.toggle("hidden");
+            inputAmountElement.value = "";
+        }, 3000);
     }else{
         replyElement.innerHTML=" \"Enjoy\" your pizzas\', Your change is R" + change + ".00 ";
-        totalCost = 0;
-         totalCostSmall=0;
-        totalCostMedium=0;
-        totalCostLarge=0;
-        countSmall=0;
-        countMedium=0;
-        countLarge=0;
-
-
+        setTimeout(function(){
+            replyElement.classList.toggle("hidden");
+            totalCost = 0;
+            totalCostSmall=0;
+            totalCostMedium=0;
+            totalCostLarge=0;
+            countSmall=0;
+            countMedium=0;
+            countLarge=0;
+            totalCost1 = 0;
+            totalCostSmall1=0;
+            totalCostMedium1=0;
+            totalCostLarge1=0;
+            totalDisplayElement.innerHTML=totalCost1;
+            display3Element.innerHTML=totalCostLarge1;
+            display2Element.innerHTML=totalCostMedium1;
+            display1Element.innerHTML=totalCostSmall1;
+            inputAmountElement.value = "";
+        }, 3000);
     }
-});
 
-payBtnElement.addEventListener("click",function(){
     setTimeout(function(){
-        replyElement.classList.remove("reply");
-    }, 3000);
-})
-
-
+        checkBtn.classList.remove("hidden");
+        payBtnElement.classList.add("hidden");
+        boxes.classList.add("hidden");
+    }, 15000);
+});
 
 button1Element.addEventListener("click",pizzaCalc);
 button2Element.addEventListener("click",pizzaCalc);
