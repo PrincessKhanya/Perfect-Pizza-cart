@@ -18,6 +18,7 @@ const checkOutPay = document.querySelectorAll(".check2");
 const inputAmountElement = document.querySelector(".inputAmount");
 const payBtnElement = document.querySelector(".payBtn");
 const replyElement = document.querySelector(".reply");
+const ShoppingCartElement = document.querySelector(".ShoppingCart")
 
 var totalCost = 0;
 var totalCostSmall=0;
@@ -28,8 +29,9 @@ var countMedium=0;
 var countLarge=0;
 
 function pizzaCalc(event){
-    if(event.target.id ==="button1" || event.target.id ==="button7"){
-        countSmall++;
+    if(event.target.id==="button1"||event.target.id==="button7"){
+        ShoppingCartElement.classList.remove("hidden");
+        countSmall++
         pizzaCalcValue();
     }else if (event.target.id ==="button2"){
         if(countSmall<=0){
@@ -39,6 +41,7 @@ function pizzaCalc(event){
         }
         pizzaCalcValue();
     }else if(event.target.id ==="button3" || event.target.id ==="button8"){
+        ShoppingCartElement.classList.remove("hidden");
         countMedium++
         pizzaCalcValue();
     }else if (event.target.id ==="button4"){
@@ -49,6 +52,7 @@ function pizzaCalc(event){
         }
         pizzaCalcValue();
     }else if(event.target.id ==="button5" || event.target.id ==="button9"){
+        ShoppingCartElement.classList.remove("hidden");
         countLarge++;
         pizzaCalcValue();
     }else if (event.target.id ==="button6"){
@@ -60,6 +64,8 @@ function pizzaCalc(event){
         pizzaCalcValue();
     }
 };
+
+
 
 function pizzaCalcValue(){
     totalCostSmall=countSmall*20;
@@ -124,6 +130,7 @@ payBtnElement.addEventListener("click",function(){
         checkBtn.classList.remove("hidden");
         payBtnElement.classList.add("hidden");
         boxes.classList.add("hidden");
+        ShoppingCartElement.classList.add("hidden");
     }, 15000);
 });
 
